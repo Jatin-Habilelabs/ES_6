@@ -3,17 +3,16 @@ class LocalStorage {
         this.map = new Map();
     }
     setItem(key, value) {
-        if (typeof value == 'string') {
-            this.map.set(key, value)
+        if (typeof value !== 'string') {
+            this.map.set(key, JSON.stringify(value))
         }
         else {
-            console.error("Value is not in correct formet");
+            this.map.set(key, value)
         }
-
     }
 
     getItem(key) {
-       return this.map.get(key)
+        return this.map.get(key)
     }
     removeItem(key) {
 
@@ -22,12 +21,13 @@ class LocalStorage {
     clear() {
         this.map.clear();
     }
-    length() {
-        return this.map.size();
+    getlength() {
+        return this.map.size;
     }
 }
 let local = new LocalStorage()
 local.setItem('name', "Jatin")
-local.setItem(3, 'sdsd')
-local.setItem('arr', JSON.stringify({ arr: [1, 2, 3, 4, 5, 6] }));
-console.log(JSON.parse(local.getItem('arr')));
+local.setItem(3, 'sdsd',)
+local.setItem('arr', { arr: [1, 2, 3, 4, 5, 6] });
+console.log(local.getlength());
+console.log(local.getItem('arr'));
